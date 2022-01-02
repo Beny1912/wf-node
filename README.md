@@ -3,8 +3,8 @@
 ## Requirements & considerations
 
 - [x] The Node.js version must be the newest release.
-- [ ] Usage of Typescript is highly encouraged.
-- [ ] The EcmaScript version to follow should be the newest one supported
+- [x] Usage of Typescript is highly encouraged.
+- [x] The EcmaScript version to follow should be the newest one supported
 by that Node.js version.
 - [ ] All the endpoints URLs and HTTP methods should be as standard as
 possible.

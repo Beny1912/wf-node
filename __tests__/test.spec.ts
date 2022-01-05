@@ -16,7 +16,6 @@ describe('CREATE SERVER', () => {
     })
     test('CHECK HEALTH ENDPOINT RETURN',async () => {
         const res = await request(app).get("/health").send();
-        console.log(res);
         expect(res.text).toEqual('Server OK');
     })
 
@@ -28,7 +27,6 @@ describe('CREATE SERVER', () => {
             "postalCode":"41710",
             "country":"España"
         });
-        console.log(res);
         expect(res.statusCode).toEqual(200);
         //expect(res.text).toEqual('Server OK');
     });
@@ -63,3 +61,94 @@ describe('CREATE SERVER', () => {
         expect(res.body.message).toBeDefined();
     });
 });
+describe('ENDPOINT CHECK ADDRESS', () => {
+
+    test('CHECK ADRESS ENDPOINT STATUS',async () => {
+        const res = await request(app).post("/checkAddress").send({
+            "street":"gran capitan",
+            "streetNumber":"2",
+            "town":"Utrera",
+            "postalCode":"41710",
+            "country":"España"
+        });
+        expect(res.statusCode).toEqual(200);
+        //expect(res.text).toEqual('Server OK');
+    });
+    test('CHECK ADRESS ENDPOINT RESPONSE',async () => {
+        const res = await request(app).post("/checkAddress").send({
+            "street":"gran capitan",
+            "streetNumber":"2",
+            "town":"Utrera",
+            "postalCode":"41710",
+            "country":"España"
+        });
+        expect(res.body.formatted_address).toBeDefined();
+    });
+    test('CHECK ERROR ADRESS ENDPOINT STATUS',async () => {
+        const res = await request(app).post("/checkAddress").send({
+            "street":"nila",
+            "streetNumber":"2",
+            "town":"Utrera",
+            "postalCode":"41710",
+            "country":"España"
+        });
+        expect(res.statusCode).toEqual(400);
+    });
+    test('CHECK ERROR ADRESS ENDPOINT RESPONSE',async () => {
+        const res = await request(app).post("/checkAddress").send({
+            "street":"nila",
+            "streetNumber":"2",
+            "town":"Utrera",
+            "postalCode":"41710",
+            "country":"España"
+        });
+        expect(res.body.message).toBeDefined();
+    });
+
+
+});
+
+describe('ENDPOINT GET WEATHER', () => {
+
+    test('CHECK ADRESS ENDPOINT STATUS',async () => {
+        const res = await request(app).post("/getWeather").send({
+            "street":"gran capitan",
+            "streetNumber":"2",
+            "town":"Utrera",
+            "postalCode":"41710",
+            "country":"España"
+        });
+        expect(res.statusCode).toEqual(200);
+    });
+    test('CHECK ADRESS ENDPOINT RESPONSE',async () => {
+        const res = await request(app).post("/getWeather").send({
+            "street":"gran capitan",
+            "streetNumber":"2",
+            "town":"Utrera",
+            "postalCode":"41710",
+            "country":"España"
+        });
+        expect(res.body.weather).toBeDefined();
+    });
+    test('CHECK ERROR ADRESS ENDPOINT STATUS',async () => {
+        const res = await request(app).post("/getWeather").send({
+            "street":"nila",
+            "streetNumber":"2",
+            "town":"Utrera",
+            "postalCode":"41710",
+            "country":"España"
+        });
+        expect(res.statusCode).toEqual(400);
+    });
+    test('CHECK ERROR ADRESS ENDPOINT RESPONSE',async () => {
+        const res = await request(app).post("/getWeather").send({
+            "street":"nila",
+            "streetNumber":"2",
+            "town":"Utrera",
+            "postalCode":"41710",
+            "country":"España"
+        });
+        expect(res.body.message).toBeDefined();
+    });
+
+})

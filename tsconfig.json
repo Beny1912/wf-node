@@ -9,7 +9,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
-    "target": "es2019",
+    "target": "es2021",
     "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",

@@ -33,7 +33,7 @@ describe('USER POST TEST', () => {
         await user.save();
         // find inserted user by lastName
         const userInDb = await User.findOne({lastName: 'Sanchez'}).exec();
-        console.log('User document from memory-db', userInDb);
+       
         // check that title is expected
         expect(userInDb.lastName).toEqual('Sanchez');
     });

@@ -1,8 +1,13 @@
-import express from "express";
+import app from "./app";
+import connect from "./connect";
+import { db } from "./config/config";
 
-const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`Express application is running on port ${port}.`);
+connect(db);
+
+// start the express server
+app.listen(PORT, (): void => {
+  // tslint:disable-next-line:no-console
+  console.log(`server started at http://localhost:${PORT}`);
 });

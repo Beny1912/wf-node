@@ -1,12 +1,10 @@
 import app from "./app";
+import connect from "./connect";
+import { db } from "./config/config";
 
 const PORT = process.env.PORT || 3000;
 
-// define a route handler for the default home page
-app.get("/health", (req, res) => {
-  // render the index template
-  res.status(200).send("Server OK");
-});
+connect(db);
 
 // start the express server
 app.listen(PORT, (): void => {

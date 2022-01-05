@@ -11,5 +11,5 @@ app.get("/health", (req, res) => {
 // start the express server
 app.listen(PORT, (): void => {
   // tslint:disable-next-line:no-console
-  console.log(`server started at http://localhost:${port}`);
+  console.log(`server started at http://localhost:${PORT}`);
 });

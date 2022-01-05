@@ -60,7 +60,8 @@
     "@types/mongoose": "^5.10.5",
     "body-parser": "^1.19.1",
     "express": "^4.17.2",
-    "mongoose": "^6.1.5"
+    "mongoose": "^6.1.5",
+    "openweathermap-ts": "^1.2.10"
   },
   "pkg": {
     "targets": [

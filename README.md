@@ -21,7 +21,7 @@
 
 ## External services
 
-- [ ] MongoDB
+- [x] MongoDB
 
 ## External APIs
 

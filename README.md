@@ -111,6 +111,15 @@ Global requirements:
 
 [MongoDB](https://www.mongodb.com/es)
 
+Global npm packages
+
+[Eslint](https://www.npmjs.com/package/eslint)
+[Typescript](https://www.npmjs.com/package/typescript)
+[Jest](https://www.npmjs.com/package/jest)
+[Prettier](https://www.npmjs.com/package/prettier)
+[Nodemon](https://www.npmjs.com/package/nodemon)
+[Husky](https://www.npmjs.com/package/husky)
+
 ```bash
 
 git clone https://github.com/Beny1912/wf-node.git

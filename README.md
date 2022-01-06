@@ -86,3 +86,37 @@ cd wf-node
 docker-compose up
 
 ```
+
+### Run test
+
+```bash
+
+git clone https://github.com/Beny1912/wf-node.git
+
+cd wf-node
+
+npm i
+
+npm run test
+
+```
+
+### Run project dev
+
+Global requirements:
+
+[Node 17.3.0](https://nodejs.org/en/)
+[Docker Desktop](https://www.docker.com/products/docker-desktop)
+[MongoDB](https://www.mongodb.com/es)
+
+```bash
+
+git clone https://github.com/Beny1912/wf-node.git
+
+cd wf-node
+
+npm i
+
+npm run start-dev
+
+```

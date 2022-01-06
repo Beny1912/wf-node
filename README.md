@@ -65,12 +65,12 @@ from Openstreetmaps and 7Timer!.
 
 ### Postman link
 
-[a link](https://www.getpostman.com/collections/c11f98853e55adbcaf18)
+[Postman link](https://www.getpostman.com/collections/c11f98853e55adbcaf18)
 
 You need to configure the next Environment Vars: HOST, PORT, TOKEN (should be obtained with signin endpoint)
 
 ### Postman file
 
-[a relative link](Wefox.postman_collection.json)
+[Postman file](Wefox.postman_collection.json)
 
 You need to configure the next Environment Vars: HOST, PORT, TOKEN (should be obtained with signin endpoint)

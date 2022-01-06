@@ -1,5 +1,13 @@
-version: '3.7'
+version: "3.7"
 services:
+  api:
+    container_name: api
+    image: node:17.3.0-alpine
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+      - redis
   mongodb:
     container_name: mongo
     image: mongo:4.4.11
@@ -11,5 +19,14 @@ services:
     volumes:
       - mongodb_data_container:/data/db
     restart: unless-stopped
+  redis:
+    image: "redis:6.2-alpine"
+    ports:
+      - "6379:6379"
+    command: redis-server --save 60 1 --requirepass wefox --loglevel warning
+    volumes:
+      - redis_data:/data
+    restart: always
 volumes:
   mongodb_data_container:
+  redis_data:

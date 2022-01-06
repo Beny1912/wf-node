@@ -1,8 +1,6 @@
 import express, { Request, Response } from "express";
-import { IDirection } from "../models/direction.model";
-import OpenWeather from "../services/openWeather";
 import { signup, signin, profile } from "../controllers/auth.controller";
-import { TokenValidation } from "../utils/verifyToken";
+import { TokenValidation } from "../middlewares/verifyToken";
 import { checkAddress } from "../controllers/direction.controller";
 import { getWeather } from "../controllers/weather.controller";
 
@@ -13,13 +11,13 @@ router.get("/health", (req: Request, res: Response, next: Function): void => {
   // response OK
   res.status(200).send("Server OK");
 });
+// define routes related with session
 router.post("/signup", signup);
 router.post("/signin", signin);
 router.get("/profile", TokenValidation, profile);
 // define a route to check if address is correct.
 router.post("/checkAddress", checkAddress);
-
 // define a route to get weather of a address
-router.post("/getWeather", getWeather);
+router.post("/getWeather", TokenValidation, getWeather);
 
 export default router;

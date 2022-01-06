@@ -12,8 +12,11 @@ export const TokenValidation = (
   next: NextFunction
 ) => {
   try {
-    const token = req.header("token");
+    let token = req.get("authorization");
     if (!token) return res.status(401).json("Access Denied");
+    // Clear Berear
+    token = token.replace(/^Bearer\s+/, "");
+
     const payload = jwt.verify(
       token,
       process.env["TOKEN_SECRET"] || "wefox"

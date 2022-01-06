@@ -1,10 +1,10 @@
 import express, { Request, Response } from "express";
 import { IDirection } from "../models/direction.model";
-import GoogleService from "../services/googleService";
 import OpenWeather from "../services/openWeather";
-
-const googleService = new GoogleService();
-const openWeather = new OpenWeather();
+import { signup, signin, profile } from "../controllers/auth.controller";
+import { TokenValidation } from "../utils/verifyToken";
+import { checkAddress } from "../controllers/direction.controller";
+import { getWeather } from "../controllers/weather.controller";
 
 const router = express.Router();
 
@@ -13,64 +13,13 @@ router.get("/health", (req: Request, res: Response, next: Function): void => {
   // response OK
   res.status(200).send("Server OK");
 });
-
+router.post("/signup", signup);
+router.post("/signin", signin);
+router.get("/profile", TokenValidation, profile);
 // define a route to check if address is correct.
-router.post(
-  "/checkAddress",
-  async (req: Request, res: Response, next: Function): Promise<void> => {
-    const address: IDirection = req.body;
-    const result = await googleService.checkAddress(
-      [
-        address.street,
-        address.streetNumber,
-        address.town,
-        address.postalCode,
-        address.country,
-      ].join(" ")
-    );
-    if (
-      result.find === "YES" &&
-      result.results[0].formatted_address
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .includes(address.street)
-    ) {
-      res.status(200).send(result.results[0]);
-    } else {
-      res.status(400).send({
-        message: "Address not exist",
-      });
-    }
-  }
-);
+router.post("/checkAddress", checkAddress);
 
 // define a route to get weather of a address
-router.post(
-  "/getWeather",
-  async (req: Request, res: Response, next: Function): Promise<void> => {
-    const address: IDirection = req.body;
-    const result = await googleService.getCoordinatesFromAddress(
-      [
-        address.street,
-        address.streetNumber,
-        address.town,
-        address.postalCode,
-        address.country,
-      ].join(" ")
-    );
-    if (result.find === "YES") {
-      const results = await openWeather.getWeatherByCoordinates(
-        result.coordinates[0].lat,
-        result.coordinates[0].lng
-      );
-      res.status(200).send(results);
-    } else {
-      res.status(400).send({
-        message: "Address not exist",
-      });
-    }
-  }
-);
+router.post("/getWeather", getWeather);
 
 export default router;

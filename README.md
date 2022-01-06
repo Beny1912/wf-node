@@ -106,7 +106,9 @@ npm run test
 Global requirements:
 
 [Node 17.3.0](https://nodejs.org/en/)
+
 [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
 [MongoDB](https://www.mongodb.com/es)
 
 ```bash

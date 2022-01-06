@@ -1,19 +1,20 @@
 version: "3.7"
 services:
-  api:
-    container_name: api
-    build: .
-    ports:
-      - 3000:3000
-    depends_on:
-      - mongodb
-      - redis
+  # api:
+  #   container_name: api
+  #   build: .
+  #   ports:
+  #     - 3000:3000
+  #   depends_on:
+  #     - mongodb
+  #     - redis
   mongodb:
     container_name: mongo
     image: mongo:4.4.11
     environment:
       MONGO_INITDB_ROOT_USERNAME: beny
       MONGO_INITDB_ROOT_PASSWORD: wefox
+      MONGO_INITDB_DATABASE: test
     ports:
       - 27017:27017
     volumes:

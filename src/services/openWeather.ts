@@ -4,7 +4,8 @@ class OpenWeather {
   getWeatherByCoordinates(lat: number, lng: number): Promise<any> {
     return new Promise((resolve, reject) => {
       const openWeather = new OpenWeatherMap({
-        apiKey: "16311551410b12e29a444fb2306239db",
+        apiKey:
+          process.env["APIKEY_OPENW"] || "16311551410b12e29a444fb2306239db",
         language: "es",
         units: "metric",
       });

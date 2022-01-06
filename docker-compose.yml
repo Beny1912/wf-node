@@ -1,16 +1,8 @@
 version: "3.7"
 services:
-  # api:
-  #   container_name: api
-  #   build: .
-  #   ports:
-  #     - 3000:3000
-  #   depends_on:
-  #     - mongodb
-  #     - redis
   mongodb:
     container_name: mongo
-    image: mongo:4.4.11
+    image: mongo:4.4.10-rc0
     environment:
       MONGO_INITDB_ROOT_USERNAME: beny
       MONGO_INITDB_ROOT_PASSWORD: wefox
@@ -25,6 +17,14 @@ services:
     ports:
       - "6379:6379"
     command: redis-server --save 60 1 --requirepass wefox --loglevel warning
+  api:
+    container_name: api
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - mongodb
+      - redis
     volumes:
       - redis_data:/data
     restart: always

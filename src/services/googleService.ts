@@ -7,7 +7,9 @@ class GoogleService {
       client
         .geocode({
           params: {
-            key: "AIzaSyBSRJmSMa2v1ImlWfagxXD_Jw9e3Z79TYk",
+            key:
+              process.env["APIKEY_GOOGLE"] ||
+              "AIzaSyBSRJmSMa2v1ImlWfagxXD_Jw9e3Z79TYk",
             address: fullAddress,
           },
           timeout: 10000, // milliseconds
@@ -43,7 +45,9 @@ class GoogleService {
       client
         .geocode({
           params: {
-            key: "AIzaSyBSRJmSMa2v1ImlWfagxXD_Jw9e3Z79TYk",
+            key:
+              process.env["APIKEY_GOOGLE"] ||
+              "AIzaSyBSRJmSMa2v1ImlWfagxXD_Jw9e3Z79TYk",
             address: fullAddress,
           },
           timeout: 10000, // milliseconds

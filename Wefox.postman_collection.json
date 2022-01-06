@@ -1,0 +1,162 @@
+{
+  "info": {
+    "_postman_id": "15bd73f8-8aef-4a2f-99aa-92e4d48936fc",
+    "name": "Wefox",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{HOST}}:{{PORT}}/health",
+          "protocol": "http",
+          "host": ["{{HOST}}"],
+          "port": "{{PORT}}",
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Address",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"street\":\"gran capitan\",\n    \"streetNumber\":\"2\",\n    \"town\":\"Utrera\",\n    \"postalCode\":\"41710\",\n    \"country\":\"España\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://{{HOST}}:{{PORT}}/checkAddress",
+          "protocol": "http",
+          "host": ["{{HOST}}"],
+          "port": "{{PORT}}",
+          "path": ["checkAddress"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get Weather By Address",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"street\":\"ninla\",\n    \"streetNumber\":\"2\",\n    \"town\":\"Utrera\",\n    \"postalCode\":\"41710\",\n    \"country\":\"España\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://{{HOST}}:{{PORT}}/getWeather",
+          "protocol": "http",
+          "host": ["{{HOST}}"],
+          "port": "{{PORT}}",
+          "path": ["getWeather"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Signup",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\":\"beny\",\n    \"email\":\"beny@beny.com\",\n    \"password\":\"benito\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://{{HOST}}:{{PORT}}/signup",
+          "protocol": "http",
+          "host": ["{{HOST}}"],
+          "port": "{{PORT}}",
+          "path": ["signup"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Signin",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"email\":\"beny@beny.com\",\n    \"password\":\"benito\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://{{HOST}}:{{PORT}}/signin",
+          "protocol": "http",
+          "host": ["{{HOST}}"],
+          "port": "{{PORT}}",
+          "path": ["signin"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Profile",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{TOKEN}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "",
+            "value": "",
+            "type": "text",
+            "disabled": true
+          }
+        ],
+        "url": {
+          "raw": "http://{{HOST}}:{{PORT}}/profile",
+          "protocol": "http",
+          "host": ["{{HOST}}"],
+          "port": "{{PORT}}",
+          "path": ["profile"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -79,7 +79,7 @@ You need to configure the next Environment Vars: HOST, PORT, TOKEN (should be ob
 
 ```bash
 
-git clone 
+git clone https://github.com/Beny1912/wf-node.git
 
 cd wf-node
 

@@ -18,6 +18,6 @@ router.get("/profile", TokenValidation, profile);
 // define a route to check if address is correct.
 router.post("/checkAddress", checkAddress);
 // define a route to get weather of a address
-router.post("/getWeather", getWeather);
+router.post("/getWeather", TokenValidation, getWeather);
 
 export default router;

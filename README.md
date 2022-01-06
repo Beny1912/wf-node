@@ -74,3 +74,15 @@ You need to configure the next Environment Vars: HOST, PORT, TOKEN (should be ob
 [Postman file](Wefox.postman_collection.json)
 
 You need to configure the next Environment Vars: HOST, PORT, TOKEN (should be obtained with signin endpoint)
+
+### Run project
+
+```bash
+
+git clone 
+
+cd wf-node
+
+docker-compose up
+
+```

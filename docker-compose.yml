@@ -2,7 +2,7 @@ version: "3.7"
 services:
   api:
     container_name: api
-    image: node:17.3.0-alpine
+    build: .
     ports:
       - 3000:3000
     depends_on:

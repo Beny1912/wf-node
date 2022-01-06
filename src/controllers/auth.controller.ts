@@ -30,6 +30,8 @@ export const signup = async (req: Request, res: Response) => {
         expiresIn: "10h",
       }
     );
+    //No show password in response
+    delete savedUser.password;
     // res.header('auth-token', token).json(token);
     res.header("auth-token", token).json(savedUser);
   } catch (e) {

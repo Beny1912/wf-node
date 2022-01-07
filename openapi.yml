@@ -1,0 +1,264 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: WeFox Challenge
+  description: A sample API to challenge Wefox in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Swagger API Team
+    email: apiteam@swagger.io
+    url: http://swagger.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://127.0.0.1:3000/
+paths:
+  /health:
+    get:
+      description:
+        Returns OK if Server is on
+      operationId: health
+      responses:
+        '200':
+          description: health response
+          content:
+            application/json:
+              schema:
+                type: string
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /signup:
+    post:
+      description: Creates a new user. Duplicates not allowed
+      operationId: addUser
+      requestBody:
+        description: User to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        '200':
+          description: signin response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /signin:
+    post:
+      description: Returns token if user is ok
+      operationId: signIn
+      requestBody:
+        description: User to login
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogginUser'
+      responses:
+        '200':
+          description: signin response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /checkAddress:
+    post:
+      description: Check if a address is valid wih the Google Maps API
+      operationId: checkAddress
+      requestBody:
+        description: User to login
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+      responses:
+        '200':
+          description: checkAddress response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressResponse'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /getWeather:
+    post:
+      security:
+          - bearerAuth: []
+      description: Returns weather in a address
+      operationId: getWeather
+      requestBody:
+        description: Weather in a town
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+      responses:
+        '200':
+          description: weather response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WeatherResponse'
+        '400':
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      
+  schemas:
+    User:
+      allOf:
+        - $ref: '#/components/schemas/NewUser'
+        - type: object
+          required:
+          - _id
+          properties:
+            _id:
+              type: string
+    NewUser:
+      type: object
+      required:
+        - username
+        - email
+        - password
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+          format: password
+    LogginUser:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+          format: password
+    Token:
+      type: object
+      required:
+        - token
+      properties:
+        token:
+          type: string
+    Address:
+      type: object
+      required:
+        - street
+        - streetNumber
+        - town
+        - postalCode
+        - country
+      properties:
+        street:
+          type: string
+        streetNumber:
+          type: string
+        town:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    AddressResponse:
+      type: object
+      required:
+        - formatted_address
+        - lat
+        - lng
+      properties:
+        formatted_address:
+          type: string
+        lat:
+          type: string
+        lng:
+          type: string
+    WeatherResponse:
+      type: object
+      required:
+        - coord
+        - weather
+        - base
+        - main
+        - visibility
+        - wind
+        - clouds
+        - dt
+        - sys
+        - timezone
+        - id
+        - name
+        - cod
+      properties:
+        coord:
+          type: object
+        weather:
+          type: array
+          items:
+            type: object
+        base:
+          type: string
+        main:
+          type: object
+        visibility:
+          type: number
+        wind:
+          type: object
+        clouds:
+          type: object
+        dt:
+          type: number
+        sys:
+          type: object
+        timezone:
+          type: number
+        id:
+          type: number
+        name:
+          type: string
+
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string

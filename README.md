@@ -59,7 +59,7 @@ from Openstreetmaps and 7Timer!.
 - [ ] Cache the usages of external services for 12 hours. For example: If an address has
       been checked in that timeframe, shouldn’t be requested against the external API again.
 
-- [ ] Add the OpenAPI (Swagger) endpoint definition for your amazing API.
+- [x] Add the OpenAPI (Swagger) endpoint definition for your amazing API.
 
 ## Setup
 
